@@ -10,11 +10,30 @@ const remoteVideo = document.getElementById('remote-video');
 const gameInput = document.getElementById('initial-input');
 const gameButton = document.getElementById('initial-button');
 
+const canvas = document.getElementById('video-canvas');
+
+const partyButton = document.getElementById('party-button');
+const filterButton = document.getElementById('filter-button');
+
+//utility functions
+async function getFace(localVideo, options){
+  results = await faceapi.mtcnn(localVideo, options)
+}
+
+const mtcnnForwardParams = {
+  // limiting the search space to larger faces for webcam detection
+  minFaceSize: 200
+}
+
+//positions for sunglasess
+var results = []
+
 const logMessage = (message) => {
   const newMessage = document.createElement('div');
   newMessage.innerText = message;
   messagesEl.appendChild(newMessage);
 };
+
 
 // Open Camera To Capture Audio and Video
 navigator.mediaDevices.getUserMedia({ video: true, audio: true })
@@ -160,5 +179,13 @@ const initConnection = (stream) => {
     const channel = localChannel || remoteChannel;
     // Send message. The other client will receive this message in 'onmessage' function from channel
     channel.send(gamemessage);
+  });
+
+  partyButton.addEventListener('click', () => {
+
+  });
+
+  filterButton.addEventListener('click', () => {
+
   });
 }

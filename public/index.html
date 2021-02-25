@@ -3,8 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <title>WebRTC Example</title>
+  <!-- INCLUDE JEELIZ FACEFILTER SCRIPT -->
+  <script src="/face_filter/libs/jeelizFaceFilter.js"></script>
 
+  <!-- INCLUDE THREE.JS -->
+  <script src="/face_filter/libs/three.js"></script>
+
+  <!-- INCLUDE JEELIZRESIZER -->
+  <script src="/face_filter/libs/JeelizResizer.js"></script>
+
+  <!-- INCLUDE JEELIZTHREEJSHELPER -->
+  <script src="/face_filter/libs/JeelizThreeHelper.js"></script>
+
+  <!-- INCLUDE FLEXMATERIAL (CUSTOM DEV) -->
+  <script src="/face_filter/libs/ThreeFlexMaterial.js"></script>
+
+  <!-- INCLUDE TWEEN.JS -->
+  <script src='/face_filter/libs/Tween.min.js'></script>
+
+  <!-- INCLUDE JQUERY -->
+  <script src='/face_filter/libs/jquery-3.3.1.min.js'></script>
+
+  <!-- INCLUDE GLFX -->
+  <script src='/face_filter/dog_face/libs/glfx.js'></script>
+
+  <!-- INCLUDE DEMO SCRIPT -->
+  <script src="/face_filter/dog_face/main.js"></script>
+
+  <!-- INCLUDE ADDDRAGEVENTLISTENER.JS -->
+  <script src='/face_filter/libs/addDragEventListener.js'></script>
+
+  <!-- INCLUDE FORK ME ON GITHUB BANNER -->
+  <!-- <script src="/face_filter/libs/widget.js"></script> -->
+
+  <link rel="stylesheet" href="/face_filter/style.css" type="text/css" />
+
+  <script src='/party_filter/libs/face-api.min.js'></script>
   <style>
+    .canvasContainer {
+        position: relative;
+        margin: 0 auto;
+        text-align: center;
+      }
+      #jeeFaceFilterCanvas {
+        z-index: 0;
+        max-height: 100%;
+        left: auto;
+        top: auto;
+        width: 100vmin;
+        transform: translate(0,0) rotateY(180deg);
+        position: static;
+      }
+      img {
+        max-width: 100%;
+      }
+      #filter {
+        position: absolute;
+        z-index: 0;
+        max-height: 100%;
+        width: 100vmin;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%);
+        opacity: 0.15;
+      }
+      #filter canvas {
+        width: 100%;
+        height: 100%;
+      }
     #video-grid {
       display: none;
       grid-template-columns: repeat(auto-fill, 400px);
@@ -20,12 +86,19 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="/main.js" type="module"></script>
 </head>
-<body>
+<body onload="main()">
   <h1>Hello!</h1>
+
+  <div>
+    <button id="party-button">Birthday Party</button>
+    <button id="filter-button">Face Filter</button>
+  </div>
 
   <!-- My Video and Remote Video from connection -->
   <div id="video-grid">
-    <video playsinline autoplay muted id="local-video"></video>
+    <canvas id="jeeFaceFilterCanvas"></canvas>
+    <canvas id="video-canvas"></canvas>
+    <video playsinline autoplay id="local-video"></video>
     <video playsinline autoplay id="remote-video"></video>
   </div>
 
