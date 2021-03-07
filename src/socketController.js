@@ -5,12 +5,18 @@ names = ['panda', 'cow', 'turtle', 'hedgehog', 'whale', 'deer'];
 var count = 0;
 
 module.exports = (io) => {
-    
+
     io.on('connect', (socket) => {
         
         // Initiate the connection process as soon as the client connects
         peers[socket.id] = socket
-        var name = names[count++];
+        if(count<6) {
+            var name = names[count++];
+        } else {
+            var name = names[count-6];
+            count++
+        }
+        
 
         // Asking all other clients to setup the peer connection receiver
         for(let id in peers) {
