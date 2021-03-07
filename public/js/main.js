@@ -18,6 +18,7 @@ const sendButton = document.getElementById('message-button');
 const logMessage = (message) => {
     const newMessage = document.createElement('div');
     newMessage.innerText = message;
+    newMessage.className = 'message';
     messagesEl.appendChild(newMessage);
 };
 
