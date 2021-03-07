@@ -34,9 +34,39 @@ const initConnection = (stream) => {
   let remoteConnection;
   let localChannel;
   let remoteChannel;
+//=======================================================
+//   socket.on('initReceive', socket_id => {
+//     console.log('INIT RECEIVE ' + socket_id)
+//     addPeer(socket_id, false)
 
+//     socket.emit('initSend', socket_id)
+// })
+
+// socket.on('initSend', socket_id => {
+//     console.log('INIT SEND ' + socket_id)
+//     addPeer(socket_id, true)
+// })
+
+// socket.on('removePeer', socket_id => {
+//     console.log('removing peer ' + socket_id)
+//     removePeer(socket_id)
+// })
+
+// socket.on('disconnect', () => {
+//     console.log('GOT DISCONNECTED')
+//     for (let socket_id in peers) {
+//         removePeer(socket_id)
+//     }
+// })
+
+// socket.on('signal', data => {
+//     peers[data.socket_id].signal(data.signal)
+// })
+//=================================================
   // Start a RTCPeerConnection to each client
   socket.on('other-users', (otherUsers) => {
+
+    
     // Ignore when not exists other users connected
     if (!otherUsers || !otherUsers.length) return;
 
