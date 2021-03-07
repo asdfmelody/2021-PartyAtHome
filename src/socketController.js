@@ -1,15 +1,15 @@
 
 peers = {}
+names = ['panda', 'cow', 'turtle', 'hedgehog', 'whale', 'deer'];
 
+var count = 0;
 
 module.exports = (io) => {
     io.on('connect', (socket) => {
-        console.log('a client is connected')
-
-
+        
         // Initiate the connection process as soon as the client connects
-
         peers[socket.id] = socket
+        var name = names[count++];
 
         // Asking all other clients to setup the peer connection receiver
         for(let id in peers) {
@@ -31,8 +31,15 @@ module.exports = (io) => {
         })
 
         socket.on('message', (message) => {
+            var msg = name + ': ' + message
             //send message to the same room
-            io.sockets.emit('createMessage', message)
+            io.sockets.emit('createMessage', msg)
+        }); 
+
+        socket.on('gameMessage', (message) => {
+            var msg = '=======' + name + ' ' + message + '======='
+            //send message to the same room
+            io.sockets.emit('createMessage', msg)
         }); 
 
         /**
