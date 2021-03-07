@@ -1,0 +1,119 @@
+.main {
+    background-color: #FFF9CA;
+    height: 100vh;
+    display: flex;
+}
+
+.main__left {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+}
+
+.main__right {
+    flex: 0.2
+}
+
+.main__videos {
+    flex-grow: 1;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    height: 75vh
+}
+
+
+.main__right {
+    border-left: 0px solid #F7D033;
+}
+
+.main__controls {
+    background-color:#F7D033;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+}
+
+.main__controls__block {
+    display: flex;
+}
+
+.main__controls__button {
+    display: flex;
+    background-color: rgba(0,0,0,0);
+    border-color: rgba(0,0,0,0);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px;
+    min-width: 80px;
+    cursor: pointer;
+    border: 2px;
+    border-radius: 10px;
+    outline: 0px;
+}
+
+.main__controls__button:hover {
+    background-color: #666666;
+}
+
+#message-button:hover {
+    border-color: #96EAC2;
+    border:10px;
+}
+
+.main__right {
+    display: flex;
+    flex-direction: column;
+}
+
+.main__header {
+    padding-top: 5px;
+    text-align: center;
+}
+
+.main__chat_window {
+    background-color:#F7D033;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.messages{
+    list-style: none;
+}
+
+.message{
+    background-color: #96EAC2;
+    padding:5px;
+    margin:10px;
+    border-radius: 10px;
+}
+
+.main__message_container {
+    background-color:#F7D033;
+    padding: 22px 12px;
+    display: flex;
+}
+
+.main__message_container input {
+    flex-grow: 1;
+    background-color: transparent;
+    border: none;
+    color: black;
+    border: 0px;
+    outline: 0px;
+    background-color: #96EAC2;
+    border-radius: 10px;
+}
+}
+
+.leave_meeting {
+    color: #EB534B;
+}
+
+.unmute, .stop {
+    color: #CC3B33;
+}

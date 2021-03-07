@@ -19,6 +19,7 @@
  
  const logMessage = (message) => {
      const newMessage = document.createElement('div');
+     newMessage.className = 'message'
      newMessage.innerText = message;
      messagesEl.appendChild(newMessage);
  };
@@ -182,7 +183,7 @@
          newVid.id = socket_id
          newVid.playsinline = false
          newVid.autoplay = true
-         newVid.className = "vid"
+         newVid.className = "vid";
          newVid.onclick = () => openPictureMode(newVid)
          newVid.ontouchstart = (e) => openPictureMode(newVid)
          if(count < 3) {
