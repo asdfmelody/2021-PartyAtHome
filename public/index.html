@@ -2,6 +2,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Party At Home</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
   <script src="/simple-peer/simplepeer.min.js"></script>
   <!-- INCLUDE JEELIZ FACEFILTER SCRIPT -->
   <script src="./face_filter/libs/jeelizFaceFilter.js"></script>
@@ -110,16 +113,32 @@
 
   <div class="main">
     <div class="main__left">
-      <div id="videos" class="container main__videos">
-        <video id="localVideo video-grid" class="vid" autoplay muted></video>
-      </div>
+
+        <div style="vertical-align: middle">
+          <div id="videos" class="container">
+              <video id="localVideo" class="vid" autoplay muted></video>
+          </div>
+          <div id="videos2" class="container"></div>
+        </div>
        <div class="main__controls">
 
           <div class="main__controls__block">
-            <button id="switchButton" class="main__controls__button" onclick="switchMedia()">Switch
-              Camera</button>
-            <button id="muteButton" class="main__controls__button" onclick="toggleMute()">Unmuted</button>
-            <button id="vidButton" class="main__controls__button" onclick="toggleVid()">Video Enabled</button>
+            <button id="switchButton" class="main__controls__button" onclick="switchMedia()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-vr" viewBox="0 0 16 16">
+                <path d="M3 12V4a1 1 0 0 1 1-1h2.5V2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5v-1H4a1 1 0 0 1-1-1zm6.5 1v1H12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.5v1H12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H9.5zM8 16a.5.5 0 0 1-.5-.5V.5a.5.5 0 0 1 1 0v15a.5.5 0 0 1-.5.5z"/>
+              </svg>
+              Switch Camera</button>
+            <button id="muteButton" class="main__controls__button" onclick="toggleMute()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
+                <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/>
+                <path fill-rule="evenodd" d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+              </svg>
+              Unmuted</button>
+            <button id="vidButton" class="main__controls__button" onclick="toggleVid()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
+              </svg>
+              Video Enabled</button>
           </div>
 
           <div class="main__controls__block">
@@ -149,22 +168,6 @@
        </div>
     </div>
  </div>
-
-
-
-
-  <div id="videos" class="container">
-      <video id="localVideo" class="vid" autoplay muted></video>
-  </div>
-  <br />
-
-  <div>
-  <span style="font-weight: bold">Message: </span>
-  <input type="text" id="message-input" title="Message to Send!">
-  <button id="message-button">Send</button>
-  <button id="gameButton" onclick="toggleGame()">Game Start</button>
-</div>
-<div class="messages"></div>
 </body>
 <footer>
   <script src='/js/main.js' lang="text/javascript"></script>
