@@ -62,32 +62,6 @@ function applyFilter() {
     alert('Ow no! WebGL isn\'t supported...')
     return
   }
-
-  const tempImage = new Image(512, 512);
-  tempImage.src = '/face_filter/dog_face/images/texture_pink.jpg';
-
-  tempImage.onload = () => {
-    const texture = canvas.texture(tempImage);
-
-    // Create the effet
-    canvas.draw(texture).vignette(0.5, 0.6).update();
-
-    const canvasOpacity = document.createElement('canvas');
-    canvasOpacity.width = 512;
-    canvasOpacity.height = 512;
-    const ctx = canvasOpacity.getContext('2d');
-
-    ctx.globalAlpha = 0.2
-    ctx.drawImage(canvas, 0, 0, 512, 512);
-
-    // Add the effect
-    const calqueMesh = new THREE.Mesh(_videoGeometry,  create_mat2d(new THREE.TextureLoader().load(canvasOpacity.toDataURL('image/png')), true))
-    calqueMesh.material.opacity = 0.2;
-    calqueMesh.material.transparent = true;
-    calqueMesh.renderOrder = 999; // render last
-    calqueMesh.frustumCulled = false;
-    FRAMEOBJ3D.add(calqueMesh);
-  }
 }
 
 // build the 3D. called once when Jeeliz Face Filter is OK
@@ -266,7 +240,7 @@ function main(){
   FRAMEOBJ3D = new THREE.Object3D();
 
   JeelizResizer.size_canvas({
-    canvasId: 'jeeFaceFilterCanvas',
+    canvasId: 'local-canvas',
     callback: function(isError, bestVideoSettings){
       init_faceFilter(bestVideoSettings);
     }
@@ -275,7 +249,7 @@ function main(){
 
 function init_faceFilter(videoSettings){
   JEEFACEFILTERAPI.init({
-    canvasId: 'jeeFaceFilterCanvas',
+    canvasId: 'local-canvas',
     NNCPath: '/face_filter/neuralNets/', // root of NN_DEFAULT.json file
     videoSettings: videoSettings,
     callbackReady: function (errCode, spec) {

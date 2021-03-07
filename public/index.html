@@ -4,41 +4,43 @@
   <meta charset="UTF-8">
   <title>WebRTC Example</title>
   <!-- INCLUDE JEELIZ FACEFILTER SCRIPT -->
-  <script src="/face_filter/libs/jeelizFaceFilter.js"></script>
+  <script src="./face_filter/libs/jeelizFaceFilter.js"></script>
 
   <!-- INCLUDE THREE.JS -->
-  <script src="/face_filter/libs/three.js"></script>
+  <script src="./face_filter/libs/three.js"></script>
 
   <!-- INCLUDE JEELIZRESIZER -->
-  <script src="/face_filter/libs/JeelizResizer.js"></script>
+  <script src="./face_filter/libs/JeelizResizer.js"></script>
 
   <!-- INCLUDE JEELIZTHREEJSHELPER -->
-  <script src="/face_filter/libs/JeelizThreeHelper.js"></script>
+  <script src="./face_filter/libs/JeelizThreeHelper.js"></script>
 
   <!-- INCLUDE FLEXMATERIAL (CUSTOM DEV) -->
-  <script src="/face_filter/libs/ThreeFlexMaterial.js"></script>
+  <script src="./face_filter/libs/ThreeFlexMaterial.js"></script>
 
   <!-- INCLUDE TWEEN.JS -->
   <script src='/face_filter/libs/Tween.min.js'></script>
 
   <!-- INCLUDE JQUERY -->
-  <script src='/face_filter/libs/jquery-3.3.1.min.js'></script>
+  <script src='./face_filter/libs/jquery-3.3.1.min.js'></script>
 
   <!-- INCLUDE GLFX -->
-  <script src='/face_filter/dog_face/libs/glfx.js'></script>
+  <script src='./face_filter/dog_face/libs/glfx.js'></script>
 
   <!-- INCLUDE DEMO SCRIPT -->
-  <script src="/face_filter/dog_face/main.js"></script>
+  <script src="./face_filter/dog_face/main.js"></script>
+
 
   <!-- INCLUDE ADDDRAGEVENTLISTENER.JS -->
-  <script src='/face_filter/libs/addDragEventListener.js'></script>
+  <script src='./face_filter/libs/addDragEventListener.js'></script>
 
   <!-- INCLUDE FORK ME ON GITHUB BANNER -->
   <!-- <script src="/face_filter/libs/widget.js"></script> -->
 
-  <link rel="stylesheet" href="/face_filter/style.css" type="text/css" />
+  <link rel="stylesheet" href="./face_filter/style.css" type="text/css" />
 
-  <script src='/party_filter/libs/face-api.min.js'></script>
+
+  <script src='./party_filter/libs/face-api.min.js'></script>
   <style>
     .canvasContainer {
         position: relative;
@@ -96,10 +98,10 @@
 
   <!-- My Video and Remote Video from connection -->
   <div id="video-grid">
-    <canvas id="jeeFaceFilterCanvas"></canvas>
-    <canvas id="video-canvas"></canvas>
-    <video playsinline autoplay id="local-video"></video>
+    <video playsinline autoplay muted id="local-video"></video>
+    <canvas id="local-canvas"></canvas>
     <video playsinline autoplay id="remote-video"></video>
+    <canvas id="remote-canvas"></canvas>
   </div>
 
   <!-- Input to send messages -->

@@ -10,30 +10,21 @@ const remoteVideo = document.getElementById('remote-video');
 const gameInput = document.getElementById('initial-input');
 const gameButton = document.getElementById('initial-button');
 
-const canvas = document.getElementById('local-canvas');
-//const buffer = document.createElement('local-canvas');
+const localCanvas = document.getElementById('local-canvas');
+const remoteCanvas = document.getElementById('remote-canvas')
 
 const partyButton = document.getElementById('party-button');
 const filterButton = document.getElementById('filter-button');
-
+/*
+const remoteVideo = document.createElement('video');
+remoteVideo.setAttribute('playsinline','playsinline');
+remoteVideo.setAttribute('autoplay', 'autoplay');
+*/
 const logMessage = (message) => {
   const newMessage = document.createElement('div');
   newMessage.innerText = message;
   messagesEl.appendChild(newMessage);
 };
-
-// ****************** Party Filter ******************** //
-// utility functions
-async function getFace(localVideo, options){
-    results = await faceapi.mtcnn(localVideo, options)
-}
-
-const mtcnnForwardParams = {
-    // limiting the search space to larger faces for webcam detection
-    minFaceSize: 200
-}
-
-var results = []
 
 // Open Camera To Capture Audio and Video
 navigator.mediaDevices.getUserMedia({ video: true, audio: true })
@@ -56,6 +47,8 @@ const initConnection = (stream) => {
 
   // Start a RTCPeerConnection to each client
   socket.on('other-users', (otherUsers) => {
+
+    //remoteCanvas.appendChild(remoteVideo)
     // Ignore when not exists other users connected
     if (!otherUsers || !otherUsers.length) return;
 
@@ -74,6 +67,7 @@ const initConnection = (stream) => {
   
     // Receive stream from remote client and add to remote video area
     localConnection.ontrack = ({ streams: [ stream ] }) => {
+      //remoteVideo.srcObject = stream;
       remoteVideo.srcObject = stream;
     };
 
@@ -111,6 +105,7 @@ const initConnection = (stream) => {
   
     // Receive stream from remote client and add to remote video area
     remoteConnection.ontrack = ({ streams: [ stream ] }) => {
+      //remoteCanvas.srcObject = stream;
       remoteVideo.srcObject = stream;
     };
 
@@ -182,35 +177,10 @@ const initConnection = (stream) => {
   });
 
   partyButton.addEventListener('click', () => {
-    faceapi.loadMtcnnModel('./party_filter/weights')
-    faceapi.loadFaceRecognitionModel('./party_filter/weights')
 
-    let ctx = canvas.getContext("2d");
-            let image = new Image()
-            image.src = "./party_filter/images/sunglasses.png"
-            // 생일 축하 케이크
-            let birthday_cake_img = new Image()
-            birthday_cake_img.src = "./party_filter/images/birthdaycake.png"
-            
-            function step() {
-                getFace(localVideo, mtcnnForwardParams)
-                ctx.drawImage(localVideo, 0, 0)
-                results.map(result => {
-                    ctx.drawImage(
-                        image,
-                        result.faceDetection.box.x + 15,
-                        result.faceDetection.box.y + 200,
-                        result.faceDetection.box.width,
-                        result.faceDetection.box.width * (image.height / image.width)
-                    )
-                })
-            }
-            requestAnimationFrame(step)
-                
   });
 
   filterButton.addEventListener('click', () => {
-    
-  });
 
+  });
 }
