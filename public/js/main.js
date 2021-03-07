@@ -305,7 +305,7 @@
  
  function toggleGame() {
      var gamestate = gameButton.innerText;
-     if (gamestate == 'Game Start') {       
+     if (gamestate == "Game Start") {       
          var ini = prompt("Set Initial");
          if(ini == null) {
              alert("Canceled");
