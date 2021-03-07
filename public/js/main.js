@@ -11,6 +11,8 @@
   */
  let peers = {}
  
+ var count = 1;
+ 
  const messagesEl = document.querySelector('.messages');
  const messageInput = document.getElementById('message-input');
  const sendButton = document.getElementById('message-button');
@@ -175,6 +177,7 @@
  
      peers[socket_id].on('stream', stream => {
          let newVid = document.createElement('video')
+         count++
          newVid.srcObject = stream
          newVid.id = socket_id
          newVid.playsinline = false
@@ -182,7 +185,12 @@
          newVid.className = "vid"
          newVid.onclick = () => openPictureMode(newVid)
          newVid.ontouchstart = (e) => openPictureMode(newVid)
-         videos.appendChild(newVid)
+         if(count < 3) {
+             videos.appendChild(newVid)
+         } else {
+             videos2.appendChild(newVid)
+         }
+         
      })
  }
  
