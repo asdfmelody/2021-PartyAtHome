@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
   <meta charset="UTF-8">
   <title>WebRTC Example</title>
@@ -38,7 +38,6 @@
   <!-- <script src="/face_filter/libs/widget.js"></script> -->
 
   <link rel="stylesheet" href="./face_filter/style.css" type="text/css" />
-
 
   <script src='./party_filter/libs/face-api.min.js'></script>
   <style>
@@ -84,40 +83,59 @@
       height: 100%;
     }
   </style>
+  <script lang="text/javascript" src="/socket.io/socket.io.js"></script>
+  <script src="/simple-peer/simplepeer.min.js"></script>
+  <style>
+    .containers {
+        display: grid;
+        grid-gap: 5px;
+        grid-template-columns: repeat(auto-fit, 1fr);
+        grid-template-rows: repeat(auto-fit, 300px);
+    }
 
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/main.js" type="module"></script>
+    .container {
+        display: flex;
+    }
+
+    .vid {
+        flex: 0 1 auto;
+        height: 400px;
+    }
+
+    .settings {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 2px 2px;
+        cursor: pointer;
+    }
+  </style>
 </head>
-<body onload="main()">
-  <h1>Hello!</h1>
 
-  <div>
-    <button id="party-button">Birthday Party</button>
-    <button id="filter-button">Face Filter</button>
-  </div>
-
-  <!-- My Video and Remote Video from connection -->
-  <div id="video-grid">
-    <video playsinline autoplay muted id="local-video"></video>
-    <canvas id="local-canvas"></canvas>
-    <video playsinline autoplay id="remote-video"></video>
-    <canvas id="remote-canvas"></canvas>
-  </div>
-
-  <!-- Input to send messages -->
-  <div>
+<body>
+    <div id="videos" class="container">
+        <video id="localVideo" class="vid" autoplay muted></video>
+    </div>
+    <br />
+    <div style="display:block">
+        <button id="switchButton" class="settings" onclick="switchMedia()">Switch
+            Camera</button>
+        <button id="muteButton" class="settings" onclick="toggleMute()">Unmuted</button>
+        <button id="vidButton" class="settings" onclick="toggleVid()">Video Enabled</button>
+    </div>
+    <div>
     <span style="font-weight: bold">Message: </span>
     <input type="text" id="message-input" title="Message to Send!">
     <button id="message-button">Send</button>
   </div>
-
-  <div>
-    <span style="font-weight: bold">초성입력: </span>
-    <input type="text" id="initial-input" title="Message to Send!">
-    <button id="initial-button">초성게임</button>
-  </div>
-
-  <!-- Area to Print Images -->
   <div class="messages"></div>
 </body>
+<footer>
+    <script src='/js/main.js' lang="text/javascript"></script>
+</footer>
 </html>

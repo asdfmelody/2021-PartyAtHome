@@ -1,22 +1,23 @@
-# 2021-PartyAtHome
+# WebRTC Video Conferencing with simple-peer
+A simple video conferencing example using simple-peer.
+This project allows multiple devices to connect with eachother with audio and video using webrtc.
+The package [simple-peer](https://github.com/feross/simple-peer) is used for webrtc.
+The implementation of the signaling server is done with [socket.io](https://socket.io/)
 
-## 서비스 소개
-* 서비스명 : 파티앳홈
-* 주제 : 비대면 모임 영상통화 플랫폼
+## Demo
+[Demo on heroku](https://dirvann-webrtc-video.herokuapp.com/)
 
-## 팀 소개
-* 팀명 : 최강이윤
-* 팀장 : 이승희
-* 팀원 : 강예원, 윤소지, 최희선
+## Running
 
-## 팀 활동 규칙
-* 팀회의시간 : 주말
-* 블로그 작성 및 발표 순서 : 최희선 -> 강예원 -> 이승희 -> 윤소지
+run `npm install` and then `npm start` in the main directory.
 
-## 사용할 기술 스택
-* javascript
-* python
+Then open the browser at `localhost:3012` or `[your network ip/ public dns]:3012`.
 
-## 대략적인 목표
-* 프론트엔드(Web) 스터디 : javascript
-* 인공지능 스터디 : python
+
+
+## Configuration
+
+Configurations can be found in `app.js` and `public/js/main.js`.
+
+Replace the ssl certificates `ssl/key.pem` and `ssl/cert.pem` with your own.
+
