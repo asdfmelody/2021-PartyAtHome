@@ -235,12 +235,12 @@ function animateTongue (mesh, isReverse) {
 }
 
 // Entry point: launched by body.onload()
-function main(){
+function dog_faceFilter(){
   DOGOBJ3D = new THREE.Object3D();
   FRAMEOBJ3D = new THREE.Object3D();
 
   JeelizResizer.size_canvas({
-    canvasId: 'local-canvas',
+    canvasId: 'localCanvas',
     callback: function(isError, bestVideoSettings){
       init_faceFilter(bestVideoSettings);
     }
@@ -249,7 +249,7 @@ function main(){
 
 function init_faceFilter(videoSettings){
   JEEFACEFILTERAPI.init({
-    canvasId: 'local-canvas',
+    canvasId: 'localCanvas',
     NNCPath: '/face_filter/neuralNets/', // root of NN_DEFAULT.json file
     videoSettings: videoSettings,
     callbackReady: function (errCode, spec) {

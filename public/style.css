@@ -4,6 +4,31 @@
     display: flex;
 }
 
+video{
+    height: 100%;
+    width: 50%;
+    object-fit: cover;
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
+ }
+
+.containers {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fit, 1fr);
+    grid-template-rows: repeat(auto-fit, 300px);
+}
+
+.container {
+    display: flex;
+}
+
+.vid {
+    flex: 0 1 auto;
+    height: 400px;
+}
+
 .main__left {
     flex: 0.8;
     display: flex;
@@ -22,7 +47,6 @@
     grid-gap: 20px;
     height: 75vh
 }
-
 
 .main__right {
     border-left: 0px solid #F7D033;
@@ -107,7 +131,6 @@
     outline: 0px;
     background-color: #96EAC2;
     border-radius: 10px;
-}
 }
 
 .leave_meeting {
