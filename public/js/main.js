@@ -16,6 +16,8 @@
  const messagesEl = document.querySelector('.messages');
  const messageInput = document.getElementById('message-input');
  const sendButton = document.getElementById('message-button');
+ const canvas = document.getElementById('localCanvas');
+ const filterButton = document.getElementById('filterButton');
  
  const logMessage = (message) => {
      const newMessage = document.createElement('div');
@@ -204,6 +206,34 @@
      el.requestPictureInPicture()
  }
  
+ 
+function faceFilter() {
+    console.log('face filter stream')
+    dog_faceFilter()
+    navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+        if (filterButton.innerText == "Filter") {
+            stream = canvas.captureStream()
+
+            filterButton.innerText = "No Filter"
+        }
+        else {filterButton.innerText = "Filter"}
+        for (let socket_id in peers) {
+            for (let index in peers[socket_id].streams[0].getTracks()) {
+                for (let index2 in stream.getTracks()) {
+                    if (peers[socket_id].streams[0].getTracks()[index].kind === stream.getTracks()[index2].kind) {
+                        peers[socket_id].replaceTrack(peers[socket_id].streams[0].getTracks()[index], stream.getTracks()[index2], peers[socket_id].streams[0])
+                        break;
+                    }
+                }
+            }
+        }
+        localStream = stream
+        localVideo.srcObject = localStream
+        //socket.emit('face filter', '')
+    })
+    //updateButtons()
+}
+
  /**
   * Switches the camera between user and environment. It will just enable the camera 2 cameras not supported.
   */

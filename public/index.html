@@ -33,81 +33,15 @@
   <!-- INCLUDE DEMO SCRIPT -->
   <script src="./face_filter/dog_face/main.js"></script>
 
-
   <!-- INCLUDE ADDDRAGEVENTLISTENER.JS -->
   <script src='./face_filter/libs/addDragEventListener.js'></script>
 
-  <!-- INCLUDE FORK ME ON GITHUB BANNER -->
-  <!-- <script src="/face_filter/libs/widget.js"></script> -->
-
-  <link rel="stylesheet" href="./face_filter/style.css" type="text/css" />
   <link rel="stylesheet" href="style.css">
+
   <script src='./party_filter/libs/face-api.min.js'></script>
+
   <script src="/simple-peer/simplepeer.min.js"></script>
-  <style>
-    .canvasContainer {
-        position: relative;
-        margin: 0 auto;
-        text-align: center;
-      }
-      #jeeFaceFilterCanvas {
-        z-index: 0;
-        max-height: 100%;
-        left: auto;
-        top: auto;
-        width: 100vmin;
-        transform: translate(0,0) rotateY(180deg);
-        position: static;
-      }
-      img {
-        max-width: 100%;
-      }
-      #filter {
-        position: absolute;
-        z-index: 0;
-        max-height: 100%;
-        width: 100vmin;
-        top: 0;
-        left: 50%;
-        transform: translate(-50%);
-        opacity: 0.15;
-      }
-      #filter canvas {
-        width: 100%;
-        height: 100%;
-      }
-      #video-grid{
-         display: flex;
-         justify-content: center;
-         flex-wrap: wrap;
-      }
-      video{
-         height: 300px;
-         width: 400px;
-         object-fit: cover;
-         padding: 8px;
-      }
-  </style>
   <script lang="text/javascript" src="/socket.io/socket.io.js"></script>
-  <script src="/simple-peer/simplepeer.min.js"></script>
-  <style>
-    .containers {
-        display: grid;
-        grid-gap: 5px;
-        grid-template-columns: repeat(auto-fit, 1fr);
-        grid-template-rows: repeat(auto-fit, 300px);
-    }
-
-    .container {
-        display: flex;
-    }
-
-    .vid {
-        flex: 0 1 auto;
-        height: 400px;
-    }
-
-  </style>
 </head>
 <body>
 
@@ -116,6 +50,7 @@
 
         <div style="vertical-align: middle">
           <div id="videos" class="container">
+            <canvas id="localCanvas" style="display: none;" width="500" height="400"></canvas>
               <video id="localVideo" class="vid" autoplay muted></video>
           </div>
           <div id="videos2" class="container"></div>
@@ -143,8 +78,8 @@
 
           <div class="main__controls__block">
             <button id="gameButton" class="main__controls__button" onclick="toggleGame()">Game Start</button>
-            <button id="gameButton" class="main__controls__button" onclick="">Party</button>
-            <button id="gameButton" class="main__controls__button" onclick="">Filter</button>
+            <button id="partyButton" class="main__controls__button" onclick="birthdayParty()">Party</button>
+            <button id="filterButton" class="main__controls__button" onclick="faceFilter()">Filter</button>
           </div>
           <div class="main__controls__block">
              <div class="main__controls__button">
