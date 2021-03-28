@@ -12,6 +12,8 @@
  let peers = {}
  
  var count = 1;
+ var filter_count = 1;
+ var filterText = "Dog Filter"
  
  const messagesEl = document.querySelector('.messages');
  const messageInput = document.getElementById('message-input');
@@ -240,16 +242,33 @@ function partyFilter() {
 
 function faceFilter() {
     console.log('face filter stream')
-    navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-        if (filterButton.innerText == "Filter") {
-            dog_faceFilter()
-            stream = canvas.captureStream()
-            filterButton.innerText = "No Filter"
-        }
-        else {
-            filterButton.innerText = "Filter"
-        }
+    
+    if(filter_count ==1 ){
+        dog_faceFilter();
+        filter_count++;
+        console.log('dog filter stream')
+        filterText="Tiger Filter"
 
+    }else if(filter_count ==2){
+        //cancel_dog();
+        tiger_faceFilter();
+        filter_count++;
+        console.log('tiger filter stream')
+        filterText="Werewolf Filter"
+
+    }else if (filter_count ==3){
+        werewolf_faceFilter();
+        filter_count=0
+        console.log('werewolf filter stream')
+        filterText="Dog Filter"
+    } else {
+      filterText="No Filter"
+      filter_count=1
+    }
+    
+    navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+        stream = canvas.captureStream()
+        filterButton.innerText = filterText
         for (let socket_id in peers) {
             for (let index in peers[socket_id].streams[0].getTracks()) {
                 for (let index2 in stream.getTracks()) {
