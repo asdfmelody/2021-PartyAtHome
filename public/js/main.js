@@ -226,7 +226,7 @@ function faceFilter() {
 
     }else if(filter_count ==2){
         //cancel_dog();
-      filterScript.removeChild(document.getElementById("dog"))
+      //filterScript.removeChild(document.getElementById("dog"))
       newScript.setAttribute('id', 'tiger');
       newScript.setAttribute('src', "./face_filter/tiger/tiger_main.js");
       filterScript.appendChild(newScript);
@@ -238,7 +238,7 @@ function faceFilter() {
 
     }else if (filter_count ==3){
       werewolf_faceFilter();
-      filterScript.removeChild(document.getElementById("tiger"))
+      //filterScript.removeChild(document.getElementById("tiger"))
       newScript.setAttribute('id', 'werewolf');
       newScript.setAttribute('src', "./face_filter/werewolf/werewolf_main.js");
       filterScript.appendChild(newScript);
