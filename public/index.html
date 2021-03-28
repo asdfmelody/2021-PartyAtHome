@@ -30,16 +30,21 @@
   <!-- INCLUDE GLFX -->
   <script src='./face_filter/dog_face/libs/glfx.js'></script>
 
-  <!-- INCLUDE DEMO SCRIPT -->
+  <!-- INCLUDE FACE FILTER DEMO SCRIPT -->
   <script src="./face_filter/dog_face/main.js"></script>
 
   <!-- INCLUDE ADDDRAGEVENTLISTENER.JS -->
   <script src='./face_filter/libs/addDragEventListener.js'></script>
 
+  <!-- INCLUDE JEELIZ FACEFILTER SCRIPT -->
+  <script src="./face_filter/libs/jeelizFaceFilter2D.js"></script>
+
+  <!-- INCLUDE PARTY DEMO SCRIPT -->
+  <script src='./party_filter/main.js'></script>
+  
+  <!-- HELPER TO USE CANVAS2D WITHOUT TAKING CARE OF WEBGL -->
+  <script src='./party_filter/libs/JeelizCanvas2DHelper.js'></script>
   <link rel="stylesheet" href="style.css">
-
-  <script src='./party_filter/libs/face-api.min.js'></script>
-
   <script src="/simple-peer/simplepeer.min.js"></script>
   <script lang="text/javascript" src="/socket.io/socket.io.js"></script>
 </head>
@@ -51,7 +56,8 @@
         <div style="vertical-align: middle">
           <div id="videos" class="container">
             <canvas id="localCanvas" style="display: none;" width="500" height="400"></canvas>
-              <video id="localVideo" class="vid" autoplay muted></video>
+            <canvas id="partyCanvas" style="display: none;" width="500" height="400"></canvas>
+            <video id="localVideo" class="vid" autoplay muted></video>
           </div>
           <div id="videos2" class="container"></div>
         </div>
@@ -78,7 +84,7 @@
 
           <div class="main__controls__block">
             <button id="gameButton" class="main__controls__button" onclick="toggleGame()">Game Start</button>
-            <button id="partyButton" class="main__controls__button" onclick="birthdayParty()">Party</button>
+            <button id="partyButton" class="main__controls__button" onclick="partyFilter()">Party</button>
             <button id="filterButton" class="main__controls__button" onclick="faceFilter()">Filter</button>
           </div>
           <div class="main__controls__block">
@@ -106,8 +112,5 @@
 </body>
 <footer>
   <script src='/js/main.js' lang="text/javascript"></script>
-
-
 </footer>
-
 </html>

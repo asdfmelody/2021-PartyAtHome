@@ -17,8 +17,10 @@
  const messageInput = document.getElementById('message-input');
  const sendButton = document.getElementById('message-button');
  const canvas = document.getElementById('localCanvas');
+ const partyCanvas = document.getElementById('partyCanvas');
+ const partyButton = document.getElementById('partyButton');
  const filterButton = document.getElementById('filterButton');
- 
+
  const logMessage = (message) => {
      const newMessage = document.createElement('div');
      newMessage.className = 'message'
@@ -186,7 +188,7 @@
          newVid.playsinline = false
          newVid.autoplay = true
          newVid.className = "vid";
-         newVid.onclick = () => openPictureMode(newVid)
+         //newVid.onclick = () => openPictureMode(newVid)
          newVid.ontouchstart = (e) => openPictureMode(newVid)
          if(count < 3) {
              videos.appendChild(newVid)
@@ -205,18 +207,20 @@
      console.log('opening pip')
      el.requestPictureInPicture()
  }
- 
- 
-function faceFilter() {
-    console.log('face filter stream')
-    dog_faceFilter()
-    navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-        if (filterButton.innerText == "Filter") {
-            stream = canvas.captureStream()
 
-            filterButton.innerText = "No Filter"
+function partyFilter() {
+    console.log('party stream')
+    navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+        if (partyButton.innerText == "Party") {
+            birthdayParty();
+            stream = partyCanvas.captureStream()
+            socket.emit('partyMessage', 'starts Party');
+            partyButton.innerText = "Stop Party"
         }
-        else {filterButton.innerText = "Filter"}
+        else {
+            socket.emit('partyMessage', 'ends Party');
+            partyButton.innerText = "Party"
+        }
         for (let socket_id in peers) {
             for (let index in peers[socket_id].streams[0].getTracks()) {
                 for (let index2 in stream.getTracks()) {
@@ -229,9 +233,34 @@ function faceFilter() {
         }
         localStream = stream
         localVideo.srcObject = localStream
-        //socket.emit('face filter', '')
     })
-    //updateButtons()
+}
+
+function faceFilter() {
+    console.log('face filter stream')
+    navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+        if (filterButton.innerText == "Filter") {
+            dog_faceFilter()
+            stream = canvas.captureStream()
+            filterButton.innerText = "No Filter"
+        }
+        else {
+            filterButton.innerText = "Filter"
+        }
+
+        for (let socket_id in peers) {
+            for (let index in peers[socket_id].streams[0].getTracks()) {
+                for (let index2 in stream.getTracks()) {
+                    if (peers[socket_id].streams[0].getTracks()[index].kind === stream.getTracks()[index2].kind) {
+                        peers[socket_id].replaceTrack(peers[socket_id].streams[0].getTracks()[index], stream.getTracks()[index2], peers[socket_id].streams[0])
+                        break;
+                    }
+                }
+            }
+        }
+        localStream = stream
+        localVideo.srcObject = localStream
+    })
 }
 
  /**
