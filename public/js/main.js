@@ -214,11 +214,11 @@ function partyFilter() {
         if (partyButton.innerText == "Party") {
             birthdayParty();
             stream = partyCanvas.captureStream()
-            socket.emit('partyMessage', 'starts Party');
+            socket.emit('partyMessage');
             partyButton.innerText = "Stop Party"
         }
         else {
-            socket.emit('partyMessage', 'ends Party');
+            socket.emit('partyMessage');
             partyButton.innerText = "Party"
         }
         for (let socket_id in peers) {
