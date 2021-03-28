@@ -247,6 +247,10 @@ function dog_faceFilter(){
   });
 }
 
+<<<<<<< HEAD:public/face_filter/dog_face/main.js
+function init_faceFilter(videoSettings){
+  JEELIZFACEFILTER.init({
+=======
 
 
 function cancel_dog(event){
@@ -255,6 +259,7 @@ function cancel_dog(event){
 
 function dog_init_faceFilter(videoSettings){
   JEEFACEFILTERAPI.init({
+>>>>>>> c192220e6847dc558bf45d58cdde6d642ff2f1aa:public/face_filter/dog_face/dog_main.js
     canvasId: 'localCanvas',
     NNCPath: '/face_filter/neuralNets/', // root of NN_DEFAULT.json file
     videoSettings: videoSettings,

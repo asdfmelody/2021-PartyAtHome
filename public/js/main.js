@@ -19,8 +19,10 @@
  const messageInput = document.getElementById('message-input');
  const sendButton = document.getElementById('message-button');
  const canvas = document.getElementById('localCanvas');
+ const partyCanvas = document.getElementById('partyCanvas');
+ const partyButton = document.getElementById('partyButton');
  const filterButton = document.getElementById('filterButton');
- 
+
  const logMessage = (message) => {
      const newMessage = document.createElement('div');
      newMessage.className = 'message'
@@ -188,7 +190,7 @@
          newVid.playsinline = false
          newVid.autoplay = true
          newVid.className = "vid";
-         newVid.onclick = () => openPictureMode(newVid)
+         //newVid.onclick = () => openPictureMode(newVid)
          newVid.ontouchstart = (e) => openPictureMode(newVid)
          if(count < 3) {
              videos.appendChild(newVid)
@@ -208,6 +210,35 @@
      el.requestPictureInPicture()
  }
 
+function partyFilter() {
+    console.log('party stream')
+    navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+        if (partyButton.innerText == "Party") {
+            birthdayParty();
+            stream = partyCanvas.captureStream()
+            audio.play()
+            socket.emit('partyMessage');
+            partyButton.innerText = "Stop Party"
+        }
+        else {
+            audio.pause()
+            audio.currentTime = 0
+            partyButton.innerText = "Party"
+        }
+        for (let socket_id in peers) {
+            for (let index in peers[socket_id].streams[0].getTracks()) {
+                for (let index2 in stream.getTracks()) {
+                    if (peers[socket_id].streams[0].getTracks()[index].kind === stream.getTracks()[index2].kind) {
+                        peers[socket_id].replaceTrack(peers[socket_id].streams[0].getTracks()[index], stream.getTracks()[index2], peers[socket_id].streams[0])
+                        break;
+                    }
+                }
+            }
+        }
+        localStream = stream
+        localVideo.srcObject = localStream
+    })
+}
 
 function faceFilter() {
     console.log('face filter stream')
@@ -250,12 +281,7 @@ function faceFilter() {
         }
         localStream = stream
         localVideo.srcObject = localStream
-        //socket.emit('face filter', '')
     })
-}
-
-function birthdayParty() {
-   audio.play()
 }
 
  /**
