@@ -1,4 +1,4 @@
-
+import { tiger_faceFilter } from '../face_filter/tiger/tiger_main';
 
 /**
  * Socket.io socket
@@ -214,61 +214,44 @@
 function faceFilter() {
     console.log('face filter stream')
     
-    // if(filter_count ==1 ){
-    //     dog_faceFilter();
-    //     filter_count++;
-    //     console.log('dog filter stream')
-    //     filterText="Tiger Filter"
-    //
-    // }else if(filter_count ==2){
-    //     //cancel_dog();
-    //   tiger_faceFilter();
-    //     filter_count++;
-    //     console.log('tiger filter stream')
-    //     filterText="Werewolf Filter"
-    //
-    // }else if (filter_count ==3){
-    //   werewolf_faceFilter();
-    //
-    //     filter_count=0
-    //     console.log('werewolf filter stream')
-    //     filterText="Dog Filter"
-    // } else {
-    //   filterText="No Filter"
-    //   filter_count=1
-    // }
-    //
-    // navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-    //     stream = canvas.captureStream()
-    //     filterButton.innerText = filterText
-    //     for (let socket_id in peers) {
-    //         for (let index in peers[socket_id].streams[0].getTracks()) {
-    //             for (let index2 in stream.getTracks()) {
-    //                 if (peers[socket_id].streams[0].getTracks()[index].kind === stream.getTracks()[index2].kind) {
-    //                     peers[socket_id].replaceTrack(peers[socket_id].streams[0].getTracks()[index], stream.getTracks()[index2], peers[socket_id].streams[0])
-    //                     break;
-    //                 }
-    //             }
-    //         }
-    //     }
-  tiger_faceFilter()
-    navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-      if (filterButton.innerText == "Filter") {
-        stream = canvas.captureStream()
+    if(filter_count ==1 ){
+        dog_faceFilter();
+        filter_count++;
+        console.log('dog filter stream')
+        filterText="Tiger Filter"
 
-        filterButton.innerText = "No Filter"
-      }
-      else {filterButton.innerText = "Filter"}
-      for (let socket_id in peers) {
-        for (let index in peers[socket_id].streams[0].getTracks()) {
-          for (let index2 in stream.getTracks()) {
-            if (peers[socket_id].streams[0].getTracks()[index].kind === stream.getTracks()[index2].kind) {
-              peers[socket_id].replaceTrack(peers[socket_id].streams[0].getTracks()[index], stream.getTracks()[index2], peers[socket_id].streams[0])
-              break;
+    }else if(filter_count ==2){
+        //cancel_dog();
+      tiger_faceFilter();
+        filter_count++;
+        console.log('tiger filter stream')
+        filterText="Werewolf Filter"
+
+    }else if (filter_count ==3){
+      werewolf_faceFilter();
+
+        filter_count=0
+        console.log('werewolf filter stream')
+        filterText="Dog Filter"
+    } else {
+      filterText="No Filter"
+      filter_count=1
+    }
+
+    navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+        stream = canvas.captureStream()
+        filterButton.innerText = filterText
+        for (let socket_id in peers) {
+            for (let index in peers[socket_id].streams[0].getTracks()) {
+                for (let index2 in stream.getTracks()) {
+                    if (peers[socket_id].streams[0].getTracks()[index].kind === stream.getTracks()[index2].kind) {
+                        peers[socket_id].replaceTrack(peers[socket_id].streams[0].getTracks()[index], stream.getTracks()[index2], peers[socket_id].streams[0])
+                        break;
+                    }
+                }
             }
-          }
         }
-      }
+
         localStream = stream
         localVideo.srcObject = localStream
         //socket.emit('face filter', '')

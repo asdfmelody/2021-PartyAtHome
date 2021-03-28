@@ -213,3 +213,4 @@ function tiger_faceFilter(){
 } //end main()
 
  
+export {tiger_faceFilter}
