@@ -249,8 +249,8 @@ function dog_faceFilter(){
 
 
 
-function cancel_dog(event){
-  return false;
+function cancel_dog(){
+  JEEFACEFILTERAPI.destroy()
 }
 
 function dog_init_faceFilter(videoSettings){
