@@ -214,11 +214,13 @@ function partyFilter() {
         if (partyButton.innerText == "Party") {
             birthdayParty();
             stream = partyCanvas.captureStream()
+            audio.play()
             socket.emit('partyMessage');
             partyButton.innerText = "Stop Party"
         }
         else {
             socket.emit('partyMessage');
+            audio.stop()
             partyButton.innerText = "Party"
         }
         for (let socket_id in peers) {
@@ -364,7 +366,7 @@ function faceFilter() {
  
  function toggleGame() {
      var gamestate = gameButton.innerText;
-     if (gamestate == 'Game Start') {       
+     if (gamestate == "Game Start") {       
          var ini = prompt("Set Initial");
          if(ini == null) {
              alert("Canceled");

@@ -1,4 +1,4 @@
-# Party At Home!
+# Party At Home
 
 ## Demo
 [Demo on heroku](https://party-at-home-ckly.herokuapp.com/)
@@ -8,8 +8,6 @@
 run `npm install` and then `npm start` in the main directory.
 
 Then open the browser at `localhost:3012` or `[your network ip/ public dns]:3012`.
-
-
 
 ## Configuration
 
