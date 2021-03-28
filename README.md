@@ -1,7 +1,7 @@
-### Party At Home
+# Party At Home
 
 ## Demo
-[Demo on heroku](https://dirvann-webrtc-video.herokuapp.com/)
+[Demo on heroku](https://party-at-home-ckly.herokuapp.com/)
 
 ## Running
 
