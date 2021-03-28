@@ -234,6 +234,10 @@ function faceFilter() {
     //updateButtons()
 }
 
+function birthdayParty() {
+
+}
+
  /**
   * Switches the camera between user and environment. It will just enable the camera 2 cameras not supported.
   */
