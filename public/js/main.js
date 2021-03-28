@@ -21,6 +21,7 @@
  const sendButton = document.getElementById('message-button');
  const canvas = document.getElementById('localCanvas');
  const filterButton = document.getElementById('filterButton');
+ const filterScript = document.getElementById('buttons');
  
  const logMessage = (message) => {
      const newMessage = document.createElement('div');
@@ -212,8 +213,12 @@
 
 function faceFilter() {
     console.log('face filter stream')
-    
+    var newScript = document.createElement('script');
+
     if(filter_count ==1 ){
+      newScript.setAttribute('id', 'dog');
+      newScript.setAttribute('src', "./face_filter/dog_face/dog_main.js");
+      filterScript.appendChild(newScript);
         dog_faceFilter();
         filter_count++;
         console.log('dog filter stream')
@@ -221,6 +226,11 @@ function faceFilter() {
 
     }else if(filter_count ==2){
         //cancel_dog();
+      filterScript.removeChild(document.getElementById("dog"))
+      newScript.setAttribute('id', 'tiger');
+      newScript.setAttribute('src', "./face_filter/tiger/tiger_main.js");
+      filterScript.appendChild(newScript);
+
       tiger_faceFilter();
         filter_count++;
         console.log('tiger filter stream')
@@ -228,7 +238,10 @@ function faceFilter() {
 
     }else if (filter_count ==3){
       werewolf_faceFilter();
-
+      filterScript.removeChild(document.getElementById("tiger"))
+      newScript.setAttribute('id', 'werewolf');
+      newScript.setAttribute('src', "./face_filter/werewolf/werewolf_main.js");
+      filterScript.appendChild(newScript);
         filter_count=0
         console.log('werewolf filter stream')
         filterText="Dog Filter"
