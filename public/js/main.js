@@ -209,7 +209,7 @@
  
 function faceFilter() {
     console.log('face filter stream')
-    dog_faceFilter()
+    tiger_faceFilter()
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {
         if (filterButton.innerText == "Filter") {
             stream = canvas.captureStream()
