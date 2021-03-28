@@ -23,7 +23,7 @@ let _flexParts = [];
 let _videoGeometry = null;
 
 // callback: launched if a face is detected or lost
-function detect_callback(isDetected) {
+function dog_detect_callback(isDetected) {
   if (isDetected) {
     console.log('INFO in detect_callback(): DETECTED');
   } else {
@@ -65,9 +65,9 @@ function applyFilter() {
 }
 
 // build the 3D. called once when Jeeliz Face Filter is OK
-function init_threeScene(spec) {
+function dog_init_threeScene(spec) {
   // INIT THE THREE.JS context
-  const threeStuffs = JeelizThreeHelper.init(spec, detect_callback);
+  const threeStuffs = JeelizThreeHelper.init(spec, dog_detect_callback);
   _videoGeometry =  threeStuffs.videoMesh.geometry;
 
   // CREATE OUR DOG EARS:
@@ -242,12 +242,18 @@ function dog_faceFilter(){
   JeelizResizer.size_canvas({
     canvasId: 'localCanvas',
     callback: function(isError, bestVideoSettings){
-      init_faceFilter(bestVideoSettings);
+      dog_init_faceFilter(bestVideoSettings);
     }
   });
 }
 
-function init_faceFilter(videoSettings){
+
+
+function cancel_dog(event){
+  return false;
+}
+
+function dog_init_faceFilter(videoSettings){
   JEEFACEFILTERAPI.init({
     canvasId: 'localCanvas',
     NNCPath: '/face_filter/neuralNets/', // root of NN_DEFAULT.json file
@@ -259,7 +265,7 @@ function init_faceFilter(videoSettings){
       }
 
       console.log('INFO: JEEFACEFILTERAPI IS READY');
-      init_threeScene(spec);
+      dog_init_threeScene(spec);
     }, // end callbackReady()
 
     // called at each render iteration (drawing loop)

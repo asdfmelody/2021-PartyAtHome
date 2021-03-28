@@ -8,7 +8,7 @@ var PARTICLESOBJ3D, PARTICLES = [], PARTICLESHOTINDEX = 0, PARTICLEDIR;
 var ISDETECTED = false;
 
 //callback : launched if a face is detected or lost
-function detect_callback(isDetected){
+function tiger_detect_callback(isDetected){
   if (isDetected){
     console.log('INFO in detect_callback(): DETECTED');
   } else {
@@ -107,9 +107,9 @@ function build_customMaskMaterial(textureURL){
 
 
 // build the 3D. called once when Jeeliz Face Filter is OK:
-function init_threeScene(spec){
+function tiger_init_threeScene(spec){
   // INIT THE THREE.JS context
-  const threeStuffs = JeelizThreeHelper.init(spec, detect_callback);
+  const threeStuffs = JeelizThreeHelper.init(spec, tiger_detect_callback);
   window.THREESTUFF = threeStuffs; // to debug in the console
 
   // LOAD THE TIGGER MESH
@@ -179,7 +179,7 @@ function tiger_faceFilter(){
       }
 
       console.log('INFO: JEEFACEFILTERAPI IS READY');
-      init_threeScene(spec);
+      tiger_init_threeScene(spec);
     }, //end callbackReady()
 
     // called at each render iteration (drawing loop):

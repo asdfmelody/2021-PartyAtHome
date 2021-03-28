@@ -23,7 +23,7 @@ let isLoaded = false;
 
 
 // callback: launched if a face is detected or lost
-function detect_callback(isDetected) {
+function werewolf_detect_callback(isDetected) {
   if (isDetected) {
     console.log('INFO in detect_callback(): DETECTED');
   } else {
@@ -32,10 +32,10 @@ function detect_callback(isDetected) {
 }
 
 // build the 3D. called once when Jeeliz Face Filter is OK
-function init_threeScene(spec) {
+function werewolf_init_threeScene(spec) {
   //addFrame();
 
-  const threeStuffs = JeelizThreeHelper.init(spec, detect_callback);
+  const threeStuffs = JeelizThreeHelper.init(spec, werewolf_detect_callback);
             
   // Add our wolf head model:
   const loadingManager = new THREE.LoadingManager();
@@ -223,12 +223,12 @@ function werewolf_faceFilter(){
   JeelizResizer.size_canvas({
     canvasId: 'localCanvas',
     callback: function(isError, bestVideoSettings){
-      init_faceFilter(bestVideoSettings);
+      werewolf_init_faceFilter(bestVideoSettings);
     }
   })
 }
 
-function init_faceFilter(videoSettings){
+function werewolf_init_faceFilter(videoSettings){
   JEEFACEFILTERAPI.init({
     canvasId: 'localCanvas',
     NNCPath: '/face_filter/neuralNets/', // root of NN_DEFAULT.json file
@@ -240,7 +240,7 @@ function init_faceFilter(videoSettings){
       }
 
       console.log('INFO: JEEFACEFILTERAPI IS READY');
-      init_threeScene(spec);
+      werewolf_init_threeScene(spec);
     },
 
     // called at each render iteration (drawing loop)
