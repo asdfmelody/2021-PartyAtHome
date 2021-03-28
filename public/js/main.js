@@ -219,17 +219,20 @@ function faceFilter() {
         filterText="Tiger Filter"
 
     }else if(filter_count ==2){
-        cancel_dog();
+        //cancel_dog();
         tiger_faceFilter();
         filter_count++;
         console.log('tiger filter stream')
         filterText="Werewolf Filter"
 
-    }else{
+    }else if (filter_count ==3){
         werewolf_faceFilter();
         filter_count=0
         console.log('werewolf filter stream')
         filterText="Dog Filter"
+    } else {
+      filterText="No Filter"
+      filter_count=1
     }
     
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {
