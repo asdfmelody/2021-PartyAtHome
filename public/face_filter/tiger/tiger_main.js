@@ -211,6 +211,3 @@ function tiger_faceFilter(){
     } //end callbackTrack()
   }); //end JEEFACEFILTERAPI.init call
 } //end main()
-
- 
-export {tiger_faceFilter}

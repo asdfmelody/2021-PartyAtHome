@@ -1,4 +1,3 @@
-import { tiger_faceFilter } from '../face_filter/tiger/tiger_main';
 
 /**
  * Socket.io socket
