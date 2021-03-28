@@ -229,7 +229,7 @@ function werewolf_faceFilter(){
 }
 
 function werewolf_init_faceFilter(videoSettings){
-  JEEFACEFILTERAPI.init({
+  JEELIZFACEFILTER.init({
     canvasId: 'localCanvas',
     NNCPath: '/face_filter/neuralNets/', // root of NN_DEFAULT.json file
     videoSettings: videoSettings,
