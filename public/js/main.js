@@ -222,19 +222,16 @@ function faceFilter() {
       filterText="Tiger Filter"
 
     }else if(filter_count ==2){
-        cancel_dog();
-
-      tiger_faceFilter();
+      cancel_dog();
+        tiger_faceFilter();
         filter_count++;
         console.log('tiger filter stream')
         filterText="Werewolf Filter"
 
-    }else if (filter_count ==3){
-      werewolf_faceFilter();
-
-        filter_count=0
-        console.log('werewolf filter stream')
-        filterText="Dog Filter"
+    }else if(filter_count ==3){
+      cancel_tiger();
+        werewolf_faceFilter();
+        filter_count++;
     } else {
       filterScript.removeChild(document.getElementById("werewolf"))
       filterText="No Filter"
@@ -242,7 +239,9 @@ function faceFilter() {
     }
 
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+        if(filter_count >=1 && filter_count <=3){
         stream = canvas.captureStream()
+        }
         filterButton.innerText = filterText
         for (let socket_id in peers) {
             for (let index in peers[socket_id].streams[0].getTracks()) {
