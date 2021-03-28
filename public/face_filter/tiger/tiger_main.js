@@ -169,7 +169,7 @@ function tiger_init_threeScene(spec){
 
 // Entry point, launched by body.onload():
 function tiger_faceFilter(){
-  JEEFACEFILTERAPI.init({
+  JEELIZFACEFILTER.init({
     canvasId: 'localCanvas',
     NNCPath: 'face_filter/neuralNets/', // path of NN_DEFAULT.json file
     callbackReady: function(errCode, spec){
