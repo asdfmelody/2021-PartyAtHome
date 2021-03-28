@@ -247,6 +247,10 @@ function dog_faceFilter(){
   });
 }
 
+function cancel_dog() {
+  JEEFACEFILTERAPI.destroy()
+}
+
 function dog_init_faceFilter(videoSettings){
   JEEFACEFILTERAPI.init({
     canvasId: 'localCanvas',

@@ -219,6 +219,7 @@ function faceFilter() {
         filterText="Tiger Filter"
 
     }else if(filter_count ==2){
+      cancel_dog();
         tiger_faceFilter();
         filter_count++;
         console.log('tiger filter stream')
