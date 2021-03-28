@@ -220,13 +220,14 @@ function faceFilter() {
 
     }else if(filter_count ==2){
         //cancel_dog();
-        tiger_faceFilter();
+
+      werewolf_faceFilter();
         filter_count++;
         console.log('tiger filter stream')
         filterText="Werewolf Filter"
 
     }else if (filter_count ==3){
-        werewolf_faceFilter();
+      tiger_faceFilter();
         filter_count=0
         console.log('werewolf filter stream')
         filterText="Dog Filter"
