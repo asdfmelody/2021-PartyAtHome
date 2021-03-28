@@ -1,11 +1,9 @@
-"use strict";
+
 
 //some globalz :
-var THREECAMERA;
 var MOUTHOPENINGMATERIALS = [];
 var TIGERMOUTHHIDEMESH = null;
 var PARTICLESOBJ3D, PARTICLES = [], PARTICLESHOTINDEX = 0, PARTICLEDIR;
-var ISDETECTED = false;
 
 //callback : launched if a face is detected or lost
 function tiger_detect_callback(isDetected){

@@ -219,21 +219,26 @@ function faceFilter() {
         filterText="Tiger Filter"
 
     }else if(filter_count ==2){
-        cancel_dog();
         tiger_faceFilter();
         filter_count++;
         console.log('tiger filter stream')
         filterText="Werewolf Filter"
 
-    }else{
+    }else if(filter_count ==3){
         werewolf_faceFilter();
-        filter_count=0
+        filter_count++;
         console.log('werewolf filter stream')
+        filterText="No Filter"
+    }else{
+        console.log('no filter stream')
         filterText="Dog Filter"
+        filter_count=1;
     }
     
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+        if(filter_count >=1 && filter_count <=3){
         stream = canvas.captureStream()
+        }
         filterButton.innerText = filterText
         for (let socket_id in peers) {
             for (let index in peers[socket_id].streams[0].getTracks()) {

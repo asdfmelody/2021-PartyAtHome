@@ -1,9 +1,7 @@
-"use strict";
+
 
 // some globalz:
 let THREEVIDEOTEXTURE = null;
-let THREECAMERA = null;
-let ISDETECTED = false;
 
 let WOLFOBJ3D = null, MASKOBJ3D = null;
 let WOLFMESH = null, FACEMESH = null;
@@ -14,8 +12,6 @@ let MOONSPRITE = null, MOONHALO = null;
 
 let isTransformed = false;
 let ROTATIONX = 0;
-
-let MIXER = null;
 
 let PARTICLEGROUP = null, GROUP = null;
 
