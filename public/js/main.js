@@ -246,6 +246,7 @@ function faceFilter() {
         console.log('werewolf filter stream')
         filterText="Dog Filter"
     } else {
+      filterScript.removeChild(document.getElementById("werewolf"))
       filterText="No Filter"
       filter_count=1
     }
