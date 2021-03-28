@@ -250,7 +250,8 @@ function dog_faceFilter(){
 
 
 function cancel_dog(){
-  JEEFACEFILTERAPI.destroy()
+  console.log("cancel dog")
+  JEEFACEFILTERAPI.destroy();
 }
 
 function dog_init_faceFilter(videoSettings){
