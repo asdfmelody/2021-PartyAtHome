@@ -235,7 +235,7 @@ function faceFilter() {
 }
 
 function birthdayParty() {
-
+   audio.play()
 }
 
  /**
