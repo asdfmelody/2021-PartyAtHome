@@ -219,8 +219,8 @@ function partyFilter() {
             partyButton.innerText = "Stop Party"
         }
         else {
-            socket.emit('partyMessage');
-            audio.stop()
+            audio.pause()
+            audio.currentTime = 0
             partyButton.innerText = "Party"
         }
         for (let socket_id in peers) {
