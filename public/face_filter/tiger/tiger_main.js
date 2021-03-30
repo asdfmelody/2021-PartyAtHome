@@ -1,11 +1,9 @@
-"use strict";
 
 //some globalz :
-var THREECAMERA;
+
 var MOUTHOPENINGMATERIALS = [];
 var TIGERMOUTHHIDEMESH = null;
 var PARTICLESOBJ3D, PARTICLES = [], PARTICLESHOTINDEX = 0, PARTICLEDIR;
-var ISDETECTED = false;
 
 //callback : launched if a face is detected or lost
 function tiger_detect_callback(isDetected){
@@ -169,7 +167,8 @@ function tiger_init_threeScene(spec){
 
 // Entry point, launched by body.onload():
 function tiger_faceFilter(){
-  JEELIZFACEFILTER.init({
+  JEELIZFACEFILTER.destroy()
+  JEELIZFACEFILTER2.init({
     canvasId: 'localCanvas',
     NNCPath: 'face_filter/neuralNets/', // path of NN_DEFAULT.json file
     callbackReady: function(errCode, spec){

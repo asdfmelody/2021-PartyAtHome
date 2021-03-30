@@ -6,7 +6,6 @@ let ISDETECTED = false;
 let TONGUEMESH = null, NOSEMESH = null, EARMESH = null;
 let DOGOBJ3D = null, FRAMEOBJ3D = null;
 
-
 let ISOVERTHRESHOLD = false, ISUNDERTRESHOLD = true;
 
 let ISLOADED = false;
@@ -245,10 +244,6 @@ function dog_faceFilter(){
       dog_init_faceFilter(bestVideoSettings);
     }
   });
-}
-
-function cancel_dog(){
-  JEELIZFACEFILTER.destroy()
 }
 
 function dog_init_faceFilter(videoSettings){

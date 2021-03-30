@@ -1,9 +1,6 @@
-"use strict";
 
 // some globalz:
 let THREEVIDEOTEXTURE = null;
-let THREECAMERA = null;
-let ISDETECTED = false;
 
 let WOLFOBJ3D = null, MASKOBJ3D = null;
 let WOLFMESH = null, FACEMESH = null;
@@ -14,8 +11,6 @@ let MOONSPRITE = null, MOONHALO = null;
 
 let isTransformed = false;
 let ROTATIONX = 0;
-
-let MIXER = null;
 
 let PARTICLEGROUP = null, GROUP = null;
 
@@ -101,7 +96,7 @@ function werewolf_init_threeScene(spec) {
   // CREATE THE MOON
   const moonGeometry = new THREE.PlaneGeometry(10, 10, 10);
   const moonMaterial = new THREE.SpriteMaterial({ //MT219: sprites are textured with specific material
-    map: new THREE.TextureLoader().load('./images/moon.png'),
+    map: new THREE.TextureLoader().load('/face_filter/werewolf/images/moon.png'),
     transparent: true,
     depthTest: false
   });
@@ -229,7 +224,8 @@ function werewolf_faceFilter(){
 }
 
 function werewolf_init_faceFilter(videoSettings){
-  JEELIZFACEFILTER.init({
+  JEELIZFACEFILTER2.destroy()
+  JEELIZFACEFILTER3.init({
     canvasId: 'localCanvas',
     NNCPath: '/face_filter/neuralNets/', // root of NN_DEFAULT.json file
     videoSettings: videoSettings,

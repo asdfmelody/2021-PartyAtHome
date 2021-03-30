@@ -81,7 +81,7 @@ video{
 }
 
 .main__controls__button:hover {
-    background-color: #666666;
+    background-color: #FAE17D;
 }
 
 #message-button:hover {
@@ -100,7 +100,7 @@ video{
 }
 
 .main__chat_window {
-    background-color:#F7D033;
+    background-color:#335af7;
     flex-grow: 1;
     overflow-y: auto;
 }
@@ -110,14 +110,14 @@ video{
 }
 
 .message{
-    background-color: #96EAC2;
+    background-color: #FFF9CA;
     padding:5px;
     margin:10px;
     border-radius: 10px;
 }
 
 .main__message_container {
-    background-color:#F7D033;
+    background-color:#335af7;
     padding: 22px 12px;
     display: flex;
 }
@@ -129,7 +129,7 @@ video{
     color: black;
     border: 0px;
     outline: 0px;
-    background-color: #96EAC2;
+    background-color: #FFF9CA;
     border-radius: 10px;
 }
 
