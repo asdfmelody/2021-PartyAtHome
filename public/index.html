@@ -1,126 +1,124 @@
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Party At Home</title>
+    <meta charset="UTF-8">
+    <title>Party At Home</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-  
-  <!-- INCLUDE JEELIZ FACEFILTER SCRIPT -->
-  <script src="./face_filter/libs/jeelizFaceFilter.js"></script>
-  <script src="./face_filter/libs/jeelizFaceFilter2.js"></script>
-  <script src="./face_filter/libs/jeelizFaceFilter3.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
-  <!-- INCLUDE THREE.JS -->
-  <script src="./face_filter/libs/three.js"></script>
+    <!-- INCLUDE JEELIZ FACEFILTER SCRIPT -->
+    <script src="./face_filter/libs/jeelizFaceFilter.js"></script>
+    <script src="./face_filter/libs/jeelizFaceFilter2.js"></script>
+    <script src="./face_filter/libs/jeelizFaceFilter3.js"></script>
 
-  <!-- INCLUDE JEELIZRESIZER -->
-  <script src="./face_filter/libs/JeelizResizer.js"></script>
+    <!-- INCLUDE THREE.JS -->
+    <script src="./face_filter/libs/three.js"></script>
 
-  <!-- INCLUDE JEELIZTHREEJSHELPER -->
-  <script src="./face_filter/libs/JeelizThreeHelper.js"></script>
+    <!-- INCLUDE JEELIZRESIZER -->
+    <script src="./face_filter/libs/JeelizResizer.js"></script>
 
-  <!-- INCLUDE FLEXMATERIAL (CUSTOM DEV) -->
-  <script src="./face_filter/libs/ThreeFlexMaterial.js"></script>
+    <!-- INCLUDE JEELIZTHREEJSHELPER -->
+    <script src="./face_filter/libs/JeelizThreeHelper.js"></script>
 
-  <!-- INCLUDE TWEEN.JS -->
-  <script src='./face_filter/libs/Tween.min.js'></script>
+    <!-- INCLUDE FLEXMATERIAL (CUSTOM DEV) -->
+    <script src="./face_filter/libs/ThreeFlexMaterial.js"></script>
 
-  <!-- INCLUDE JQUERY -->
-  <script src='./face_filter/libs/jquery-3.3.1.min.js'></script>
+    <!-- INCLUDE TWEEN.JS -->
+    <script src='./face_filter/libs/Tween.min.js'></script>
 
-  <!-- INCLUDE GLFX -->
-  <script src='./face_filter/dog_face/libs/glfx.js'></script>
+    <!-- INCLUDE JQUERY -->
+    <script src='./face_filter/libs/jquery-3.3.1.min.js'></script>
 
-  <!-- INCLUDE DEMO SCRIPT -->
-  <script src="/face_filter/dog_face/dog_main.js"></script>
-  <script src="/face_filter/tiger/tiger_main.js"></script>
-  <script src="/face_filter/werewolf/werewolf_main.js"></script>
+    <!-- INCLUDE GLFX -->
+    <script src='./face_filter/dog_face/libs/glfx.js'></script>
 
-  <!-- INCLUDE ADDDRAGEVENTLISTENER.JS -->
-  <script src='./face_filter/libs/addDragEventListener.js'></script>
+    <!-- INCLUDE DEMO SCRIPT -->
+    <script src="./face_filter/dog_face/dog_main.js"></script>
+    <script src="./face_filter/tiger/tiger_main.js"></script>
+    <script src="./face_filter/werewolf/werewolf_main.js"></script>
 
-  <!-- INCLUDE JEELIZ FACEFILTER SCRIPT -->
-  <script src="./party_filter/libs/jeelizFaceFilter2D.js"></script>
+    <!-- INCLUDE ADDDRAGEVENTLISTENER.JS -->
+    <script src='./face_filter/libs/addDragEventListener.js'></script>
 
-   <!-- INCLUDE CUSTOM MATERIAL -->
-   <script src='./face_filter/libs/GlowMaterial/threex.geometricglow.js'></script>
-   <script src='./face_filter/libs/GlowMaterial/threex.dilategeometry.js'></script>
-   <script src='./face_filter/libs/GlowMaterial/threex.atmospherematerial.js'></script>
-   <script src='./face_filter/libs/GlowMaterial/threex.atmospherematerialdatgui.js'></script>
-  
-   <!-- INCLUDE BUFFER LOADER -->
-  <script src='./face_filter/libs/BufferLoader.js'></script>
+    <!-- INCLUDE JEELIZ FACEFILTER SCRIPT -->
+    <script src="./party_filter/libs/jeelizFaceFilter2D.js"></script>
 
-  <script src='./face_filter/libs/SPE.min.js'></script>
+    <!-- INCLUDE CUSTOM MATERIAL -->
+    <script src='./face_filter/libs/GlowMaterial/threex.geometricglow.js'></script>
+    <script src='./face_filter/libs/GlowMaterial/threex.dilategeometry.js'></script>
+    <script src='./face_filter/libs/GlowMaterial/threex.atmospherematerial.js'></script>
+    <script src='./face_filter/libs/GlowMaterial/threex.atmospherematerialdatgui.js'></script>
 
-  <!-- INCLUDE PARTY DEMO SCRIPT -->
-  <script src='./party_filter/main.js'></script>
-  
-  <!-- HELPER TO USE CANVAS2D WITHOUT TAKING CARE OF WEBGL -->
-  <script src='./party_filter/libs/JeelizCanvas2DHelper.js'></script>
-  <link rel="stylesheet" href="style.css">
-  <script src="/simple-peer/simplepeer.min.js"></script>
-  <script lang="text/javascript" src="/socket.io/socket.io.js"></script>
+    <!-- INCLUDE BUFFER LOADER -->
+    <script src='./face_filter/libs/BufferLoader.js'></script>
+
+    <script src='./face_filter/libs/SPE.min.js'></script>
+
+    <!-- INCLUDE PARTY DEMO SCRIPT -->
+    <script src='./party_filter/main.js'></script>
+
+    <!-- HELPER TO USE CANVAS2D WITHOUT TAKING CARE OF WEBGL -->
+    <script src='./party_filter/libs/JeelizCanvas2DHelper.js'></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="/simple-peer/simplepeer.min.js"></script>
+    <script lang="text/javascript" src="/socket.io/socket.io.js"></script>
 
     <script>
       var audio = new Audio('HappyBirthdaySong.wav');
     </script>
 </head>
 <body>
-  <div class="main">
+<div class="main">
     <div class="main__left">
         <div style="vertical-align: middle">
-          <div id="videos" class="container">
-            <canvas id="localCanvas" style="display: none;" width="500" height="400"></canvas>
-            <canvas id="partyCanvas" style="display: none;" width="500" height="400"></canvas>
-            <video id="localVideo" class="vid" autoplay muted></video>
-          </div>
-          <div id="videos2" class="container"></div>
+            <div id="videos" class="container">
+                <canvas id="localCanvas" style="display: none;" width="500" height="400"></canvas>
+                <canvas id="partyCanvas" style="display: none;" width="500" height="400"></canvas>
+                <video id="localVideo" class="vid" autoplay muted></video>
+            </div>
+            <div id="videos2" class="container"></div>
         </div>
-       <div class="main__controls">
-          <div class="main__controls__block">
-            <button id="muteButton" class="main__controls__button" onclick="toggleMute()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
-                <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/>
-                <path fill-rule="evenodd" d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
-              </svg>
-              Unmuted</button>
-            <button id="vidButton" class="main__controls__button" onclick="toggleVid()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
-              </svg>
-              Video Enabled</button>
-          </div>
-          <div class="main__controls__block">
-            <button id="gameButton" class="main__controls__button" onclick="toggleGame()">Game Start</button>
-            <button id="partyButton" class="main__controls__button" onclick="partyFilter()">Party</button>
-            <button id="filterButton" class="main__controls__button" onclick="faceFilter()">Dog Filter</button>
-
-          </div>
-          <div class="main__controls__block">
-             <div class="main__controls__button">
-                <span class="leave_meeting" onclick="window.open('','_self').close();">Leave Meeting</span>
-             </div>
-          </div>
-       </div>
+        <div class="main__controls">
+            <div class="main__controls__block">
+                <button id="muteButton" class="main__controls__button" onclick="toggleMute()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
+                        <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/>
+                        <path fill-rule="evenodd" d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+                    </svg>
+                    Unmuted</button>
+                <button id="vidButton" class="main__controls__button" onclick="toggleVid()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
+                    </svg>
+                    Video Enabled</button>
+            </div>
+            <div class="main__controls__block">
+                <button id="gameButton" class="main__controls__button" onclick="toggleGame()">Game Start</button>
+                <button id="partyButton" class="main__controls__button" onclick="partyFilter()">Party</button>
+                <button id="filterButton" class="main__controls__button" onclick="faceFilter()">Dog Filter</button>
+            </div>
+            <div class="main__controls__block">
+                <div class="main__controls__button">
+                    <span class="leave_meeting">Leave Meeting</span>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="main__right">
-       <div class="main__header">
-          <h6>Chat</h6>
-       </div>
-       <div class="main__chat_window">
-          <ul class="messages"></ul>
-       </div>
-       <div class="main__message_container">
-          <input type="text" id="message-input" placeholder="Message to Send!">
-          <button class="main__controls__button" id="message-button">Send</button>
-       </div>
+        <div class="main__header">
+            <h6>Chat</h6>
+        </div>
+        <div class="main__chat_window">
+            <ul class="messages"></ul>
+        </div>
+        <div class="main__message_container">
+            <input type="text" id="message-input" placeholder="Message to Send!">
+            <button class="main__controls__button" id="message-button">Send</button>
+        </div>
     </div>
- </div>
-
+</div>
 </body>
 <footer>
-  <script src='/js/main.js' lang="text/javascript"></script>
+    <script src='/js/main.js' lang="text/javascript"></script>
 </footer>
 </html>
