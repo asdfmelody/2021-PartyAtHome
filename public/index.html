@@ -5,6 +5,7 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  
   <!-- INCLUDE JEELIZ FACEFILTER SCRIPT -->
   <script src="./face_filter/libs/jeelizFaceFilter.js"></script>
   <script src="./face_filter/libs/jeelizFaceFilter2.js"></script>
@@ -47,12 +48,11 @@
    <script src='./face_filter/libs/GlowMaterial/threex.dilategeometry.js'></script>
    <script src='./face_filter/libs/GlowMaterial/threex.atmospherematerial.js'></script>
    <script src='./face_filter/libs/GlowMaterial/threex.atmospherematerialdatgui.js'></script>
-  <!-- INCLUDE BUFFER LOADER -->
+  
+   <!-- INCLUDE BUFFER LOADER -->
   <script src='./face_filter/libs/BufferLoader.js'></script>
 
   <script src='./face_filter/libs/SPE.min.js'></script>
-
-  <link rel="stylesheet" href="style.css">
 
   <!-- INCLUDE PARTY DEMO SCRIPT -->
   <script src='./party_filter/main.js'></script>
@@ -68,10 +68,8 @@
     </script>
 </head>
 <body>
-
   <div class="main">
     <div class="main__left">
-
         <div style="vertical-align: middle">
           <div id="videos" class="container">
             <canvas id="localCanvas" style="display: none;" width="500" height="400"></canvas>
@@ -81,7 +79,6 @@
           <div id="videos2" class="container"></div>
         </div>
        <div class="main__controls">
-
           <div class="main__controls__block">
             <button id="muteButton" class="main__controls__button" onclick="toggleMute()">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
@@ -95,7 +92,6 @@
               </svg>
               Video Enabled</button>
           </div>
-
           <div class="main__controls__block">
             <button id="gameButton" class="main__controls__button" onclick="toggleGame()">Game Start</button>
             <button id="partyButton" class="main__controls__button" onclick="partyFilter()">Party</button>
@@ -106,7 +102,6 @@
                 <span class="leave_meeting">Leave Meeting</span>
              </div>
           </div>
-
        </div>
     </div>
     <div class="main__right">
@@ -119,7 +114,6 @@
        <div class="main__message_container">
           <input type="text" id="message-input" placeholder="Message to Send!">
           <button class="main__controls__button" id="message-button">Send</button>
-
        </div>
     </div>
  </div>
