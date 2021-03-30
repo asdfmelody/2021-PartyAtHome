@@ -133,6 +133,15 @@
      socket.on("createMessage", message => {
          logMessage(`${message}`);
      })
+
+     socket.on('partySoundOn', () => {
+        audio.play()
+     })
+
+     socket.on('partySoundOff', () => {
+        audio.pause()
+        audio.currentTime = 0
+     })
  }
  
  /**
@@ -188,7 +197,6 @@
          newVid.playsinline = false
          newVid.autoplay = true
          newVid.className = "vid";
-         //newVid.onclick = () => openPictureMode(newVid)
          newVid.ontouchstart = (e) => openPictureMode(newVid)
          if(count < 3) {
              videos.appendChild(newVid)
@@ -220,14 +228,12 @@ function partyFilter() {
 
             canvasStream.addTrack(audioTrack)
             stream = canvasStream;
-            audio.play()
-            socket.emit('partyMessage');
+            socket.emit('partyStart');
             partyButton.innerText = "Stop Party"
         }
         else {
             JEELIZFACEFILTER2D.destroy()
-            audio.pause()
-            audio.currentTime = 0
+            socket.emit('partyStop');
             partyButton.innerText = "Party"
         }
         for (let socket_id in peers) {

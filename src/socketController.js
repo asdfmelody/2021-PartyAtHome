@@ -49,12 +49,18 @@ module.exports = (io) => {
             io.sockets.emit('createMessage', msg)
         }); 
 
-        socket.on('partyMessage', () => {
+        socket.on('partyStart', () => {
             var msg = '=======' + 'Happy Birthday ' + name + '======='
             //send message to the same room
             io.sockets.emit('createMessage', msg)
+            io.sockets.emit('partySoundOn')
         });
-
+        
+        socket.on('partyStop', () => {
+            //send message to the same room
+            io.sockets.emit('partySoundOff')
+        });
+        
         /**
          * remove the disconnected peer connection from all other connected clients
          */
