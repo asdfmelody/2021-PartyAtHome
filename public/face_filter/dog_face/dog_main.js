@@ -6,7 +6,6 @@ let ISDETECTED = false;
 let TONGUEMESH = null, NOSEMESH = null, EARMESH = null;
 let DOGOBJ3D = null, FRAMEOBJ3D = null;
 
-
 let ISOVERTHRESHOLD = false, ISUNDERTRESHOLD = true;
 
 let ISLOADED = false;
@@ -247,15 +246,8 @@ function dog_faceFilter(){
   });
 }
 
-
-
-function cancel_dog(){
-  console.log("cancel dog")
-  JEEFACEFILTERAPI.destroy();
-}
-
 function dog_init_faceFilter(videoSettings){
-  JEEFACEFILTERAPI.init({
+  JEELIZFACEFILTER.init({
     canvasId: 'localCanvas',
     NNCPath: '/face_filter/neuralNets/', // root of NN_DEFAULT.json file
     videoSettings: videoSettings,

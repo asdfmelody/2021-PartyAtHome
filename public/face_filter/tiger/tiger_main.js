@@ -1,6 +1,6 @@
 
-
 //some globalz :
+
 var MOUTHOPENINGMATERIALS = [];
 var TIGERMOUTHHIDEMESH = null;
 var PARTICLESOBJ3D, PARTICLES = [], PARTICLESHOTINDEX = 0, PARTICLEDIR;
@@ -167,7 +167,8 @@ function tiger_init_threeScene(spec){
 
 // Entry point, launched by body.onload():
 function tiger_faceFilter(){
-  JEEFACEFILTERAPI.init({
+  JEELIZFACEFILTER.destroy()
+  JEELIZFACEFILTER2.init({
     canvasId: 'localCanvas',
     NNCPath: 'face_filter/neuralNets/', // path of NN_DEFAULT.json file
     callbackReady: function(errCode, spec){

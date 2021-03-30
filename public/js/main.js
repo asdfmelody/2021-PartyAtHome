@@ -20,9 +20,9 @@
  const messageInput = document.getElementById('message-input');
  const sendButton = document.getElementById('message-button');
  const canvas = document.getElementById('localCanvas');
+ const partyCanvas = document.getElementById('partyCanvas');
+ const partyButton = document.getElementById('partyButton');
  const filterButton = document.getElementById('filterButton');
- const filterScript = document.getElementById('buttons');
- 
  const logMessage = (message) => {
      const newMessage = document.createElement('div');
      newMessage.className = 'message'
@@ -92,7 +92,6 @@
  function init(stream) {
      socket = io()
  
- 
      socket.on('initReceive', socket_id => {
          console.log('INIT RECEIVE ' + socket_id)
          addPeer(socket_id, false)
@@ -134,7 +133,15 @@
      socket.on("createMessage", message => {
          logMessage(`${message}`);
      })
- 
+
+     socket.on('partySoundOn', () => {
+        audio.play()
+     })
+
+     socket.on('partySoundOff', () => {
+        audio.pause()
+        audio.currentTime = 0
+     })
  }
  
  /**
@@ -190,7 +197,6 @@
          newVid.playsinline = false
          newVid.autoplay = true
          newVid.className = "vid";
-         newVid.onclick = () => openPictureMode(newVid)
          newVid.ontouchstart = (e) => openPictureMode(newVid)
          if(count < 3) {
              videos.appendChild(newVid)
@@ -210,6 +216,40 @@
      el.requestPictureInPicture()
  }
 
+function partyFilter() {
+    console.log('party stream')
+    navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+        if (partyButton.innerText == "Party") {
+            birthdayParty();
+            var canvasStream = partyCanvas.captureStream()
+            var audioTrack = stream.getTracks().filter(function(track) {
+                return track.kind === 'audio'
+            })[0];
+
+            canvasStream.addTrack(audioTrack)
+            stream = canvasStream;
+            socket.emit('partyStart');
+            partyButton.innerText = "Stop Party"
+        }
+        else {
+            JEELIZFACEFILTER2D.destroy()
+            socket.emit('partyStop');
+            partyButton.innerText = "Party"
+        }
+        for (let socket_id in peers) {
+            for (let index in peers[socket_id].streams[0].getTracks()) {
+                for (let index2 in stream.getTracks()) {
+                    if (peers[socket_id].streams[0].getTracks()[index].kind === stream.getTracks()[index2].kind) {
+                        peers[socket_id].replaceTrack(peers[socket_id].streams[0].getTracks()[index], stream.getTracks()[index2], peers[socket_id].streams[0])
+                        break;
+                    }
+                }
+            }
+        }
+        localStream = stream
+        localVideo.srcObject = stream
+    })
+}
 
 function faceFilter() {
     console.log('face filter stream')
@@ -222,7 +262,6 @@ function faceFilter() {
       filterText="Tiger Filter"
 
     }else if(filter_count ==2){
-      cancel_dog();
         tiger_faceFilter();
         filter_count++;
         console.log('tiger filter stream')
@@ -231,16 +270,24 @@ function faceFilter() {
     }else if(filter_count ==3){
       cancel_tiger();
         werewolf_faceFilter();
-        filter_count++;
+        filter_count=0
+        console.log('werewolf filter stream')
+        filterText="No Filter"
     } else {
-      filterScript.removeChild(document.getElementById("werewolf"))
-      filterText="No Filter"
-      filter_count=1
+        JEELIZFACEFILTER3.destroy()
+        filter_count=1
+        filterText="Dog Filter"
     }
 
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-        if(filter_count >=1 && filter_count <=3){
-        stream = canvas.captureStream()
+        if (filter_count != 1) {
+            var canvasStream = canvas.captureStream()
+            var audioTrack = stream.getTracks().filter(function(track) {
+                return track.kind === 'audio'
+            })[0];
+
+            canvasStream.addTrack(audioTrack)
+            stream = canvasStream;
         }
         filterButton.innerText = filterText
         for (let socket_id in peers) {
@@ -256,12 +303,7 @@ function faceFilter() {
 
         localStream = stream
         localVideo.srcObject = localStream
-        //socket.emit('face filter', '')
     })
-}
-
-function birthdayParty() {
-   audio.play()
 }
 
  /**
@@ -352,6 +394,16 @@ function birthdayParty() {
          localStream.getAudioTracks()[index].enabled = !localStream.getAudioTracks()[index].enabled
          muteButton.innerText = localStream.getAudioTracks()[index].enabled ? "Unmuted" : "Muted"
      }
+     if (muteButton.innerText == "Unmuted") {
+        const icon = document.createElement('div');
+        icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16"><path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/><path fill-rule="evenodd" d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/></svg>'
+        muteButton.prepend(icon)
+    }
+    else if (muteButton.innerText == "Muted") {
+        const icon = document.createElement('div');
+        icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic-mute-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M12.734 9.613A4.995 4.995 0 0 0 13 8V7a.5.5 0 0 0-1 0v1c0 .274-.027.54-.08.799l.814.814zm-2.522 1.72A4 4 0 0 1 4 8V7a.5.5 0 0 0-1 0v1a5 5 0 0 0 4.5 4.975V15h-3a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-3v-2.025a4.973 4.973 0 0 0 2.43-.923l-.718-.719zM11 7.88V3a3 3 0 0 0-5.842-.963L11 7.879zM5 6.12l4.486 4.486A3 3 0 0 1 5 8V6.121zm8.646 7.234l-12-12 .708-.708 12 12-.708.707z"/></svg>'
+        muteButton.prepend(icon)
+    }
  }
  /**
   * Enable/disable video
@@ -361,6 +413,16 @@ function birthdayParty() {
          localStream.getVideoTracks()[index].enabled = !localStream.getVideoTracks()[index].enabled
          vidButton.innerText = localStream.getVideoTracks()[index].enabled ? "Video Enabled" : "Video Disabled"
      }
+     if (vidButton.innerText == "Video Enabled") {
+        const icon = document.createElement('div');
+        icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/></svg>'
+        vidButton.prepend(icon)
+   }
+    else if (vidButton.innerText == "Video Disabled") {
+        const icon = document.createElement('div');
+        icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-off-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l6.69 9.365zm-10.114-9A2.001 2.001 0 0 0 0 5v6a2 2 0 0 0 2 2h5.728L.847 3.366zm9.746 11.925l-10-14 .814-.58 10 14-.814.58z"/></svg>'
+        vidButton.prepend(icon)
+    }
  }
  
  function toggleGame() {
@@ -391,5 +453,28 @@ function birthdayParty() {
          muteButton.innerText = localStream.getAudioTracks()[index].enabled ? "Unmuted" : "Muted"
      }
  }
- 
- 
+
+ function updateIcons() {
+     // video button
+    if (vidButton.innerText == "Video Enabled") {
+        const icon = document.createElement('div');
+        icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/></svg>'
+        vidButton.prepend(icon)
+   }
+    else if (vidButton.innerText == "Video Disabled") {
+        const icon = document.createElement('div');
+        icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-off-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l6.69 9.365zm-10.114-9A2.001 2.001 0 0 0 0 5v6a2 2 0 0 0 2 2h5.728L.847 3.366zm9.746 11.925l-10-14 .814-.58 10 14-.814.58z"/></svg>'
+        vidButton.prepend(icon)
+    }
+    // mute button
+    if (muteButton.innerText == "Unmuted") {
+        const icon = document.createElement('div');
+        icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16"><path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/><path fill-rule="evenodd" d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/></svg>'
+        muteButton.prepend(icon)
+    }
+    else if (muteButton.innerText == "Muted") {
+        const icon = document.createElement('div');
+        icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic-mute-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M12.734 9.613A4.995 4.995 0 0 0 13 8V7a.5.5 0 0 0-1 0v1c0 .274-.027.54-.08.799l.814.814zm-2.522 1.72A4 4 0 0 1 4 8V7a.5.5 0 0 0-1 0v1a5 5 0 0 0 4.5 4.975V15h-3a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-3v-2.025a4.973 4.973 0 0 0 2.43-.923l-.718-.719zM11 7.88V3a3 3 0 0 0-5.842-.963L11 7.879zM5 6.12l4.486 4.486A3 3 0 0 1 5 8V6.121zm8.646 7.234l-12-12 .708-.708 12 12-.708.707z"/></svg>'
+        muteButton.prepend(icon)
+    }
+ }
