@@ -133,7 +133,15 @@
      socket.on("createMessage", message => {
          logMessage(`${message}`);
      })
- 
+
+     socket.on('partySoundOn', () => {
+        audio.play()
+     })
+
+     socket.on('partySoundOff', () => {
+        audio.pause()
+        audio.currentTime = 0
+     })
  }
  
  /**
@@ -189,7 +197,6 @@
          newVid.playsinline = false
          newVid.autoplay = true
          newVid.className = "vid";
-         //newVid.onclick = () => openPictureMode(newVid)
          newVid.ontouchstart = (e) => openPictureMode(newVid)
          if(count < 3) {
              videos.appendChild(newVid)
@@ -214,14 +221,19 @@ function partyFilter() {
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {
         if (partyButton.innerText == "Party") {
             birthdayParty();
-            stream = partyCanvas.captureStream()
-            audio.play()
-            socket.emit('partyMessage');
+            var canvasStream = partyCanvas.captureStream()
+            var audioTrack = stream.getTracks().filter(function(track) {
+                return track.kind === 'audio'
+            })[0];
+
+            canvasStream.addTrack(audioTrack)
+            stream = canvasStream;
+            socket.emit('partyStart');
             partyButton.innerText = "Stop Party"
         }
         else {
-            audio.pause()
-            audio.currentTime = 0
+            JEELIZFACEFILTER2D.destroy()
+            socket.emit('partyStop');
             partyButton.innerText = "Party"
         }
         for (let socket_id in peers) {
@@ -235,7 +247,7 @@ function partyFilter() {
             }
         }
         localStream = stream
-        localVideo.srcObject = localStream
+        localVideo.srcObject = stream
     })
 }
 
@@ -249,7 +261,6 @@ function faceFilter() {
         filterText="Tiger Filter"
 
     }else if(filter_count ==2){
-        //cancel_dog();
         tiger_faceFilter();
         filter_count++;
         console.log('tiger filter stream')
@@ -259,14 +270,23 @@ function faceFilter() {
         werewolf_faceFilter();
         filter_count=0
         console.log('werewolf filter stream')
-        filterText="Dog Filter"
+        filterText="No Filter"
     } else {
-      filterText="No Filter"
-      filter_count=1
+        JEELIZFACEFILTER3.destroy()
+        filter_count=1
+        filterText="Dog Filter"
     }
     
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-        stream = canvas.captureStream()
+        if (filter_count != 1) {
+            var canvasStream = canvas.captureStream()
+            var audioTrack = stream.getTracks().filter(function(track) {
+                return track.kind === 'audio'
+            })[0];
+
+            canvasStream.addTrack(audioTrack)
+            stream = canvasStream;
+        }
         filterButton.innerText = filterText
         for (let socket_id in peers) {
             for (let index in peers[socket_id].streams[0].getTracks()) {
@@ -392,7 +412,6 @@ function faceFilter() {
      }
      if (vidButton.innerText == "Video Enabled") {
         const icon = document.createElement('div');
-        console.log(icon)
         icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/></svg>'
         vidButton.prepend(icon)
    }
@@ -435,6 +454,7 @@ function faceFilter() {
  function updateIcons() {
      // video button
     if (vidButton.innerText == "Video Enabled") {
+        const icon = document.createElement('div');
         icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/></svg>'
         vidButton.prepend(icon)
    }
