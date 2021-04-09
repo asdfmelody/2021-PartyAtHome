@@ -1,5 +1,13 @@
 # Party At Home
 
+## Develop Period
+
+2021-01 ~ 2021-03
+
+## Description
+
+https://www.youtube.com/watch?v=WkyqtIUiEzY
+
 ## Demo
 [Demo on heroku](https://party-at-home-ckly.herokuapp.com/)
 
